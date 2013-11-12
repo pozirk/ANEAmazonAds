@@ -1,0 +1,17 @@
+<extension xmlns="http://ns.adobe.com/air/extension/3.6">
+  <id>com.pozirk.ads.AmazonAds</id>
+  <versionNumber>1</versionNumber>
+  <platforms>
+    <platform name="Android-ARM">
+      <applicationDeployment>
+        <nativeLibrary>libAmazonAds.jar</nativeLibrary>
+        <initializer>com.pozirk.ads.amazon.Extension</initializer>
+        <finalizer>com.pozirk.ads.amazon.Extension</finalizer>
+      </applicationDeployment>
+    </platform>
+		
+		<platform name="default">
+			<applicationDeployment/>
+    </platform> 
+  </platforms>
+</extension>
