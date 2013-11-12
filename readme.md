@@ -56,7 +56,7 @@ protected function onEvent(ae:AdEvent):void
 
 //showing 600x90 ad at the bottom center side of the screen
 _admob.show(AdParams.SIZE_600x90, AdParams.HALIGN_CENTER, AdParams.VALIGN_BOTTOM);
-_amazonAds.setTimeout(30000); //set timeout (in milliseconds) to load new ad, not sure if it's working...
+_amazonAds.setTimeout(30000); //set timeout (in milliseconds) to load new ad, not sure if it works properly...
 ```
 
 # Misc
