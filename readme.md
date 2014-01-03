@@ -34,6 +34,12 @@ import com.pozirk.ads.amazon.AmazonAds;
 import com.pozirk.ads.amazon.AdParams;
 import com.pozirk.ads.amazon.AdEvent;
 
+...
+
+protected var _amazonAds:AmazonAds = null;
+
+...
+
 //> initialization of AmazonAds
 _amazonAds = new AmazonAds();
 _amazonAds.addEventListener(AdEvent.AD_LOADED, onEvent);
