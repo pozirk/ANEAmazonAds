@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2013 Pozirk Games
+﻿/* Copyright (c) 2014 Pozirk Games
  * http://www.pozirk.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -59,6 +59,22 @@ package com.pozirk.ads.amazon
 			_ctx.call("hide");
 		}
 		
+		/**
+		 * Cache interstitial ad, listen for AdEvent.INTERSTITIAL_CACHE_OK before showing it
+		 */
+		public function cacheInterstitial():void
+		{
+			_ctx.call("cacheInterstitial");
+		}
+
+		/**
+		 * Show interstitial ad, if it is not cached yet, nothing will be shown
+		 */
+		public function showInterstitial():void
+		{
+			_ctx.call("showInterstitial");
+		}
+		
 		public function setTimeout(timeout:int):void
 		{
 			_ctx.call("setTimeout", timeout);
@@ -88,19 +104,25 @@ package com.pozirk.ads.amazon
 				
 				case "AD_EXPANDED":
 				{
-					e = new AdEvent(AdEvent.AD_EXPANDED);
+					e = new AdEvent(AdEvent.AD_EXPANDED, event.level);
 					break;
 				}
 				
 				case "AD_COLLAPSED":
 				{
-					e = new AdEvent(AdEvent.AD_COLLAPSED);
+					e = new AdEvent(AdEvent.AD_COLLAPSED, event.level);
 					break;
 				}
 				
 				case "AD_FAILED_TO_LOAD":
 				{
 					e = new AdEvent(AdEvent.AD_FAILED_TO_LOAD, event.level);
+					break;
+				}
+				
+				case "AD_DISMISSED":
+				{
+					e = new AdEvent(AdEvent.AD_DISMISSED, event.level);
 					break;
 				}
 			}

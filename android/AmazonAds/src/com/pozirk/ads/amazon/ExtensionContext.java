@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Pozirk Games
+/* Copyright (c) 2014 Pozirk Games
  * http://www.pozirk.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,6 +40,8 @@ public class ExtensionContext extends FREContext
   	functionMap.put("enableLogging", new EnableLoggingFunction());
   	functionMap.put("hide", new HideFunction());
   	functionMap.put("dispose", new DisposeFunction());
+  	functionMap.put("cacheInterstitial", new CacheInterstitialFunction());
+  	functionMap.put("showInterstitial", new ShowInterstitialFunction());
 
   	return functionMap;
   }

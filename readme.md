@@ -3,12 +3,14 @@ ANEAmazonAds is an Adobe AIR native extension (ANE) for Kindle tablets (and othe
 Supported functionality:<br />
 - show ad;<br />
 - hide ad;<br />
+- cache interstitial;<br />
+- show interstitial;<br />
 - listen tap, close, etc. event.<br />
 <br />
 
 # Docs
 Please, read docs and try ANE before asking any questions.<br />
-https://developer.amazon.com/sdk/mobileads.html<br />
+https://developer.amazon.com/appsandservices/apis/earn/mobile-ads<br />
 http://help.adobe.com/en_US/air/extensions/index.html<br />
 
 
@@ -61,12 +63,25 @@ protected function onEvent(ae:AdEvent):void
 
 
 //showing 600x90 ad at the bottom center side of the screen
-_admob.show(AdParams.SIZE_600x90, AdParams.HALIGN_CENTER, AdParams.VALIGN_BOTTOM);
+_amazonAds.show(AdParams.SIZE_600x90, AdParams.HALIGN_CENTER, AdParams.VALIGN_BOTTOM);
 _amazonAds.setTimeout(30000); //set timeout (in milliseconds) to load new ad, not sure if it works properly...
+
+//caching interstitial
+_amazonAds.cacheInterstitial();
+
+//showing interstitial
+_amazonAds.showInterstitial();
 ```
 
+
+# Game with Amazon Mobile Ads
+www.amazon.com/Pozirk-Games-All-in-One-Mahjong-FREE/dp/B00JQHVJSU/<br />
+If Amazon Ads don't work (no fill), game will fall back to AdMob.<br />
+In order to see the interstitial ad, you need to win/lose any game.<br />
+
+
 # Misc
-ANE is build with AIR3.9, in order to rebuild for another version do the following:<br />
-- edit "air\extension.xml" and change 3.9 in very first line to any 3.X you need;<br />
-- edit "build.bat" and in the very last line change path from AIR3.9 SDK to any AIR3.X SDK you need;<br />
+ANE is build with AIR14.0, in order to rebuild for another version (prior 14.0) do the following:<br />
+- edit "air\extension.xml" and change 14.0 in very first line to any SDK you need;<br />
+- edit "build.bat" and in the very last line change path from AIR14.0 SDK to any AIR SDK you need;<br />
 - execute "build.bat" to repack the ANE.<br />

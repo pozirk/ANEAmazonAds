@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2013 Pozirk Games
+﻿/* Copyright (c) 2014 Pozirk Games
  * http://www.pozirk.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +28,7 @@ package com.pozirk.ads.amazon
 		public static const AD_EXPANDED:String = "AD_EXPANDED"; //user clicked banner
 		public static const AD_COLLAPSED:String = "AD_COLLAPSED"; //user closed rich media ad
 		public static const AD_FAILED_TO_LOAD:String = "AD_FAILED_TO_LOAD"; //shit happens
+		public static const AD_DISMISSED:String = "AD_DISMISSED"; //most likely interstitial was closed by user
 		
 		public var _data:String; //extra info about event
 		

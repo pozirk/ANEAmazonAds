@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Pozirk Games
+/* Copyright (c) 2014 Pozirk Games
  * http://www.pozirk.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,11 +20,13 @@ import android.app.Activity;
 //import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+
 import com.amazon.device.ads.*;
 
 public class AmazonAdsManager implements AdListener
 {
   protected AdLayout _adView = null;
+  protected InterstitialAd _interstitial;
   protected AdSize _adSize = AdSize.SIZE_AUTO;
   protected RelativeLayout _parentView;
   protected Activity _act;
@@ -93,6 +95,23 @@ public class AmazonAdsManager implements AdListener
   	_async = _adView.loadAd(adOptions);
   }
   
+  public void cacheInterstitial()
+  {
+	  _interstitial = new InterstitialAd(_act);
+	  
+      // Set the listener to use the callbacks below.
+      _interstitial.setListener(this);
+
+      // Load the interstitial.
+      _interstitial.loadAd();
+  }
+  
+  public void showInterstitial()
+  {
+  	if(_interstitial != null)
+  		_interstitial.showAd();
+  }
+  
   public void setTimeout(int timeout)
   {
   	_adView.setTimeout(timeout);
@@ -126,27 +145,33 @@ public class AmazonAdsManager implements AdListener
   	hide();
   }
 
-  public void onAdLoaded(AdLayout view, AdProperties adProperties)
+  public void onAdLoaded(Ad ad, AdProperties adProperties)
   {
   	if(_ctx != null)
-  		_ctx.dispatchStatusEventAsync("AD_LOADED", "testing: "+_testing+", asyncTask: "+_async);
+  		_ctx.dispatchStatusEventAsync("AD_LOADED", "type: "+(ad == _adView ? "banner" : "interstitial")+", testing: "+_testing+", asyncTask: "+_async);
   }
 
-  public void onAdFailedToLoad(AdLayout view, AdError error)
+  public void onAdFailedToLoad(Ad ad, AdError error)
   {
   	if(_ctx != null)
-      _ctx.dispatchStatusEventAsync("AD_FAILED_TO_LOAD", error.getCode()+": "+error.getMessage());
+      _ctx.dispatchStatusEventAsync("AD_FAILED_TO_LOAD", "type: "+(ad == _adView ? "banner" : "interstitial")+", "+error.getCode()+": "+error.getMessage());
   }
 
-  public void onAdExpanded(AdLayout view)
+  public void onAdExpanded(Ad ad)
   {
   	if(_ctx != null)
-      _ctx.dispatchStatusEventAsync("AD_EXPANDED", "");
+      _ctx.dispatchStatusEventAsync("AD_EXPANDED", "type: "+(ad == _adView ? "banner" : "interstitial"));
   }
 
-  public void onAdCollapsed(AdLayout view)
+  public void onAdCollapsed(Ad ad)
   {
   	if(_ctx != null)
-      _ctx.dispatchStatusEventAsync("AD_COLLAPSED", "");
+      _ctx.dispatchStatusEventAsync("AD_COLLAPSED", "type: "+(ad == _adView ? "banner" : "interstitial"));
+  }
+  
+  public void onAdDismissed(Ad ad)
+  {
+  	if(_ctx != null)
+  		_ctx.dispatchStatusEventAsync("AD_DISMISSED", "type: "+(ad == _adView ? "banner" : "interstitial"));
   }
 }

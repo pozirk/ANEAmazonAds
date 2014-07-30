@@ -37,7 +37,7 @@ public class ShowFunction implements FREFunction
   	catch(Exception e)
     {
     	e.printStackTrace();
-    	ctx.dispatchStatusEventAsync("AD_SHOW_FAIL", e.getMessage());
+    	ctx.dispatchStatusEventAsync("AD_SHOW_FAIL", "type: banner, "+e.getMessage());
     }
 
   	return null;
