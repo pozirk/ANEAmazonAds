@@ -76,7 +76,7 @@ _amazonAds.showInterstitial();
 
 # Game with Amazon Mobile Ads
 www.amazon.com/Pozirk-Games-All-in-One-Mahjong-FREE/dp/B00JQHVJSU/<br />
-If Amazon Ads don't work (no fill), game will fall back to AdMob.<br />
+*If Amazon Ads don't work (no fill), game will fall back to AdMob.*<br />
 In order to see the interstitial ad, you need to win/lose any game.<br />
 
 
